@@ -1,8 +1,6 @@
 package com.thiagoft.goallistapispring.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -12,6 +10,9 @@ public class GoalList {
     @Id
     private Long id;
     private String description;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
     @OneToMany(mappedBy = "goalList")
     private Set<Goal> goals;
 
@@ -37,6 +38,14 @@ public class GoalList {
 
     public void setGoals(Set<Goal> goals) {
         this.goals = goals;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
