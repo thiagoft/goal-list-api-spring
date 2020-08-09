@@ -1,6 +1,7 @@
 package com.thiagoft.goallistapispring.controller;
 
 import com.thiagoft.goallistapispring.entity.GoalList;
+import com.thiagoft.goallistapispring.entity.User;
 import com.thiagoft.goallistapispring.repository.GoalListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,10 @@ public class GoalListController {
     @GetMapping
     public List<GoalList> findAll() {
         return goalListRepository.findAll();
+    }
+
+    @GetMapping("user/{id}")
+    public List<GoalList> findByUser(@PathVariable("id") Long userId) {
+        return goalListRepository.findByUser(userId);
     }
 }

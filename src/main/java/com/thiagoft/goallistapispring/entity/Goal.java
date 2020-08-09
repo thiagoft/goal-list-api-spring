@@ -1,18 +1,15 @@
 package com.thiagoft.goallistapispring.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Goal {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    @ManyToOne
-    @JoinColumn(name="goal_list_id", nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private GoalList goalList;
 
     public Long getId() {

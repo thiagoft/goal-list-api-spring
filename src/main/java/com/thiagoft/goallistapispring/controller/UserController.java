@@ -5,10 +5,8 @@ import com.thiagoft.goallistapispring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
-@RequestMapping
+@RequestMapping("users")
 public class UserController {
 
     private UserRepository userRepository;
