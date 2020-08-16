@@ -1,6 +1,9 @@
 package com.thiagoft.goallistapispring.entity;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -8,9 +11,13 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
     private GoalList goalList;
+    private Boolean isRecurrent;
+    private LocalDateTime startGoal;
+    private LocalDateTime endGoal;
 
     public Long getId() {
         return id;
@@ -34,6 +41,30 @@ public class Goal {
 
     public void setGoalList(GoalList goalList) {
         this.goalList = goalList;
+    }
+
+    public Boolean getRecurrent() {
+        return isRecurrent;
+    }
+
+    public void setRecurrent(Boolean recurrent) {
+        isRecurrent = recurrent;
+    }
+
+    public LocalDateTime getStartGoal() {
+        return startGoal;
+    }
+
+    public void setStartGoal(LocalDateTime startGoal) {
+        this.startGoal = startGoal;
+    }
+
+    public LocalDateTime getEndGoal() {
+        return endGoal;
+    }
+
+    public void setEndGoal(LocalDateTime endGoal) {
+        this.endGoal = endGoal;
     }
 
     @Override

@@ -1,15 +1,23 @@
 package com.thiagoft.goallistapispring.entity;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String name;
+    @NonNull
     private String email;
+    @NonNull
     private String password;
 
     public Long getId() {

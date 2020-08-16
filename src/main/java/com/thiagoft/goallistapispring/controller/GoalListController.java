@@ -30,6 +30,11 @@ public class GoalListController {
         return goalListRepository.findAll();
     }
 
+    @DeleteMapping
+    public void deleteGoalList(@RequestBody GoalList goalList) {
+        goalListRepository.delete(goalList);
+    }
+
     @GetMapping("user/{id}")
     public List<GoalList> findByUser(@PathVariable("id") Long userId) {
         return goalListRepository.findByUser(userId);
