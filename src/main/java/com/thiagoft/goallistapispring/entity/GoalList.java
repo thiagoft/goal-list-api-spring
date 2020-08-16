@@ -1,10 +1,8 @@
 package com.thiagoft.goallistapispring.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class GoalList {
@@ -13,10 +11,9 @@ public class GoalList {
     private Long id;
     private String description;
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
     private User user;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "goalList")
-    private Set<Goal> goals = new HashSet<>();
+    private List<Goal> goals;
 
     public Long getId() {
         return id;
@@ -34,11 +31,11 @@ public class GoalList {
         this.description = description;
     }
 
-    public Set<Goal> getGoals() {
+    public List<Goal> getGoals() {
         return goals;
     }
 
-    public void setGoals(Set<Goal> goals) {
+    public void setGoals(List<Goal> goals) {
         this.goals = goals;
     }
 

@@ -85,6 +85,10 @@ public class Goal {
         return "Goal{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
+                ", goalList=" + goalList +
+                ", isRecurrent=" + isRecurrent +
+                ", startGoal=" + startGoal +
+                ", endGoal=" + endGoal +
                 '}';
     }
 }

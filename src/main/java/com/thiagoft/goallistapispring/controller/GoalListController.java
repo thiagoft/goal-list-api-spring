@@ -1,9 +1,12 @@
 package com.thiagoft.goallistapispring.controller;
 
+import com.thiagoft.goallistapispring.entity.Goal;
 import com.thiagoft.goallistapispring.entity.GoalList;
-import com.thiagoft.goallistapispring.entity.User;
 import com.thiagoft.goallistapispring.repository.GoalListRepository;
+import com.thiagoft.goallistapispring.repository.GoalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,15 +17,36 @@ import java.util.List;
 public class GoalListController {
 
     private GoalListRepository goalListRepository;
+    private GoalRepository goalRepository;
 
     @Autowired
-    public GoalListController(GoalListRepository goalListRepository) {
+    public GoalListController(GoalListRepository goalListRepository,GoalRepository goalRepository) {
         this.goalListRepository = goalListRepository;
+        this.goalRepository = goalRepository;
     }
 
     @PostMapping
-    public GoalList save(@RequestBody GoalList goalList) {
-        return goalListRepository.save(goalList);
+    public ResponseEntity<GoalList> save(@RequestBody GoalList goalList) {
+        List<Goal> goalsToSave = goalList.getGoals();
+        goalList.setGoals(null);
+
+        try {
+            GoalList goaListSaved = goalListRepository.save(goalList);
+
+            if (goalsToSave != null) {
+                goalsToSave.forEach(goal -> {
+                    goal.setGoalList(goalList);
+                    goalRepository.save(goal);
+                });
+            }
+
+            goaListSaved.setGoals(goalsToSave);
+
+            return ResponseEntity.ok(goaListSaved);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping
