@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("goal-list")
 public class GoalListController {
@@ -47,11 +46,6 @@ public class GoalListController {
             exception.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-    }
-
-    @GetMapping
-    public List<GoalList> findAll() {
-        return goalListRepository.findAll();
     }
 
     @DeleteMapping
