@@ -18,6 +18,7 @@ public class Goal {
     private Boolean isRecurrent;
     private LocalDateTime startGoal;
     private LocalDateTime endGoal;
+    private Boolean isDone;
 
     public Long getId() {
         return id;
@@ -67,6 +68,14 @@ public class Goal {
         this.endGoal = endGoal;
     }
 
+    public Boolean getDone() {
+        return isDone;
+    }
+
+    public void setDone(Boolean done) {
+        isDone = done;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,6 +98,7 @@ public class Goal {
                 ", isRecurrent=" + isRecurrent +
                 ", startGoal=" + startGoal +
                 ", endGoal=" + endGoal +
+                ", isDone=" + isDone +
                 '}';
     }
 }
