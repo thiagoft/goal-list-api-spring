@@ -28,6 +28,11 @@ public class GoalListController {
         return goalListService.save(goalList);
     }
 
+    @PutMapping
+    public ResponseEntity<GoalList> update(@RequestBody GoalList goalList) {
+        return goalListService.update(goalList);
+    }
+
     @DeleteMapping
     public void deleteGoalList(@RequestBody GoalList goalList) {
         goalListService.deleteGoalList(goalList);

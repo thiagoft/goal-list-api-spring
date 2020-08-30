@@ -37,12 +37,22 @@ public class GoalListService {
             if (goalsToSave != null) {
                 goalsToSave.forEach(goal -> {
                     goal.setGoalList(goalList);
-                    goalRepository.save(goal);
+                    goalRepository.saveAndFlush(goal);
                 });
             }
 
             goaListSaved.setGoals(goalsToSave);
 
+            return ResponseEntity.ok(goaListSaved);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    public ResponseEntity<GoalList> update(GoalList goalList) {
+        try {
+            GoalList goaListSaved = goalListRepository.saveAndFlush(goalList);
             return ResponseEntity.ok(goaListSaved);
         } catch (Exception exception) {
             exception.printStackTrace();
