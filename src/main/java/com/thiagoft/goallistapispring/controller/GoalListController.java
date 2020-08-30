@@ -1,12 +1,8 @@
 package com.thiagoft.goallistapispring.controller;
 
-import com.thiagoft.goallistapispring.entity.Goal;
 import com.thiagoft.goallistapispring.entity.GoalList;
-import com.thiagoft.goallistapispring.repository.GoalListRepository;
-import com.thiagoft.goallistapispring.repository.GoalRepository;
 import com.thiagoft.goallistapispring.service.GoalListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
