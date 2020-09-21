@@ -18,6 +18,15 @@ public class GoalList {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "goalList")
     private List<Goal> goals;
 
+    public GoalList() {
+    }
+
+    public GoalList(String description, User user, List<Goal> goals) {
+        this.description = description;
+        this.user = user;
+        this.goals = goals;
+    }
+
     public Long getId() {
         return id;
     }

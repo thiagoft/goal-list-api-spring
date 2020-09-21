@@ -20,6 +20,16 @@ public class Goal {
     private LocalDateTime endGoal;
     private Boolean isDone;
 
+    public Goal(String description, Boolean isRecurrent, LocalDateTime startGoal,
+                LocalDateTime endGoal, Boolean isDone) {
+        this.description = description;
+        this.goalList = goalList;
+        this.isRecurrent = isRecurrent;
+        this.startGoal = startGoal;
+        this.endGoal = endGoal;
+        this.isDone = isDone;
+    }
+
     public Long getId() {
         return id;
     }
