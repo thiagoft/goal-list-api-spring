@@ -1,4 +1,5 @@
 spring:
+  profiles.active: prd
   datasource:
     url: jdbc:h2:mem:goal-list
     driverClassName: org.h2.Driver

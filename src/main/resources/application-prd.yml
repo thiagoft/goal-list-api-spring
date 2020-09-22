@@ -1,0 +1,9 @@
+logging:
+  level:
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+    org.hibernate.SQL: ERROR
+    org.hibernate.type.descriptor.sql.BasicBinder: ERROR
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss} - %msg%n"
+    file: "%d{dd-MM-yyyy HH:mm:ss} [%thread] %-5level %logger{35} - %msg%n"
