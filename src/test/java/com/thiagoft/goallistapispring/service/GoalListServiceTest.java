@@ -11,8 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class GoalListServiceTest {
@@ -35,7 +37,7 @@ public class GoalListServiceTest {
     }
 
     @Test
-    public void testSavingMethodsWithGoals() {
+    public void testSavingMethodWithGoals() {
         User user = new User("test_user", "test@test.com", "1234");
         user = userRepository.save(user);
 
@@ -49,6 +51,22 @@ public class GoalListServiceTest {
 
         assertNotNull(goalListSaved.getId());
         assertNotNull(goalListSaved.getGoals());
+    }
+
+    @Test
+    public void testDeletingMethod() {
+        User user = new User("test_user", "test@test.com", "1234");
+        user = userRepository.save(user);
+
+        GoalList goalList = new GoalList("NewList", user);
+        GoalList goalListSaved = goalListRepository.save(goalList);
+
+        assertNotNull(goalListSaved.getId());
+
+        goalListRepository.delete(goalListSaved);
+
+        Optional<GoalList> goalListDeleted = goalListRepository.findById(goalListSaved.getId());
+        assertTrue(goalListDeleted.isEmpty());
     }
 
     @Test

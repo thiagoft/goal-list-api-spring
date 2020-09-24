@@ -27,6 +27,11 @@ public class GoalList {
         this.goals = goals;
     }
 
+    public GoalList(String description, User user) {
+        this.description = description;
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
