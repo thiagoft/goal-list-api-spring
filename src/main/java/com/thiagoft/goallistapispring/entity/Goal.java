@@ -17,16 +17,15 @@ public class Goal {
     private GoalList goalList;
     private Boolean isRecurrent;
     private LocalDateTime startGoal;
-    private LocalDateTime endGoal;
     private Boolean isDone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     public Goal(String description, Boolean isRecurrent, LocalDateTime startGoal,
-                LocalDateTime endGoal, Boolean isDone) {
+                Boolean isDone) {
         this.description = description;
-        this.goalList = goalList;
         this.isRecurrent = isRecurrent;
         this.startGoal = startGoal;
-        this.endGoal = endGoal;
         this.isDone = isDone;
     }
 
@@ -70,20 +69,20 @@ public class Goal {
         this.startGoal = startGoal;
     }
 
-    public LocalDateTime getEndGoal() {
-        return endGoal;
-    }
-
-    public void setEndGoal(LocalDateTime endGoal) {
-        this.endGoal = endGoal;
-    }
-
     public Boolean getDone() {
         return isDone;
     }
 
     public void setDone(Boolean done) {
         isDone = done;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
@@ -107,8 +106,8 @@ public class Goal {
                 ", goalList=" + goalList +
                 ", isRecurrent=" + isRecurrent +
                 ", startGoal=" + startGoal +
-                ", endGoal=" + endGoal +
                 ", isDone=" + isDone +
+                ", category=" + category +
                 '}';
     }
 }

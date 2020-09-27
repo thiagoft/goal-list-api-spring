@@ -41,10 +41,8 @@ public class GoalListServiceTest {
         User user = new User("test_user", "test@test.com", "1234");
         user = userRepository.save(user);
 
-        List<Goal> goals = List.of(new Goal("goal1", false, LocalDateTime.now(),
-                LocalDateTime.now(), false),
-                new Goal("goal2", false, LocalDateTime.now(),
-                        LocalDateTime.now(), false));
+        List<Goal> goals = List.of(new Goal("goal1", false, LocalDateTime.now(), false),
+                new Goal("goal2", false, LocalDateTime.now(), false));
 
         GoalList goalList = new GoalList("NewList", user, goals);
         GoalList goalListSaved = goalListRepository.save(goalList);
