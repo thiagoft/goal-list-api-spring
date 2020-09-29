@@ -3,6 +3,7 @@ package com.thiagoft.goallistapispring.controller;
 import com.thiagoft.goallistapispring.entity.GoalList;
 import com.thiagoft.goallistapispring.service.GoalListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +22,22 @@ public class GoalListController {
 
     @PostMapping
     public ResponseEntity<GoalList> save(@RequestBody GoalList goalList) {
-        return goalListService.save(goalList);
+        try {
+            return ResponseEntity.ok(goalListService.save(goalList));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PutMapping
     public ResponseEntity<GoalList> update(@RequestBody GoalList goalList) {
-        return goalListService.update(goalList);
+        try {
+            return ResponseEntity.ok(goalListService.update(goalList));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @DeleteMapping

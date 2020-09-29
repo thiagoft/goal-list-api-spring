@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GoalListService {
@@ -23,37 +24,27 @@ public class GoalListService {
         this.goalRepository = goalRepository;
     }
 
-    public ResponseEntity<GoalList> save(GoalList goalList) {
+    public GoalList save(GoalList goalList) {
         List<Goal> goalsToSave = goalList.getGoals();
         goalList.setGoals(null);
 
-        try {
-            GoalList goaListSaved = goalListRepository.save(goalList);
+        GoalList goaListSaved = goalListRepository.save(goalList);
 
-            if (goalsToSave != null) {
-                goalsToSave.forEach(goal -> {
-                    goal.setGoalList(goalList);
-                    goalRepository.saveAndFlush(goal);
-                });
-            }
-
-            goaListSaved.setGoals(goalsToSave);
-
-            return ResponseEntity.ok(goaListSaved);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        if (goalsToSave != null) {
+            goalsToSave.forEach(goal -> {
+                goal.setGoalList(goalList);
+                goalRepository.saveAndFlush(goal);
+            });
         }
+
+        goaListSaved.setGoals(goalsToSave);
+
+        return goaListSaved;
+
     }
 
-    public ResponseEntity<GoalList> update(GoalList goalList) {
-        try {
-            GoalList goaListSaved = goalListRepository.saveAndFlush(goalList);
-            return ResponseEntity.ok(goaListSaved);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public GoalList update(GoalList goalList) {
+        return goalListRepository.saveAndFlush(goalList);
     }
 
     public void deleteGoalList(GoalList goalList) {
@@ -62,6 +53,10 @@ public class GoalListService {
 
     public List<GoalList> findByUser(Long userId) {
         return goalListRepository.findByUser(userId);
+    }
+
+    public Optional<GoalList> findById(Long id) {
+        return goalListRepository.findById(id);
     }
 
 }
