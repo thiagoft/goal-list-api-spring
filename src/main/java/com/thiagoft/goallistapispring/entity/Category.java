@@ -12,6 +12,18 @@ public class Category {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    public Category() {
+    }
+
+    public Category(Long id) {
+        this.id = id;
+    }
+
+    public Category(String description, User user) {
+        this.description = description;
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
