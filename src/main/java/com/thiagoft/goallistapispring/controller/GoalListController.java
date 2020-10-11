@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("goal-list")
 public class GoalListController {
 
-    private GoalListService goalListService;
+    private final GoalListService goalListService;
 
     @Autowired
     public GoalListController(GoalListService goalListService) {

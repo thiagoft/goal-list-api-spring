@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("categories")
 public class CategoryController {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
     public CategoryController(CategoryRepository categoryRepository) {
