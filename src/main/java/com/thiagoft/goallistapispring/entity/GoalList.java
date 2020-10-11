@@ -1,7 +1,5 @@
 package com.thiagoft.goallistapispring.entity;
 
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +9,6 @@ public class GoalList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
     private String description;
     @ManyToOne
     private User user;

@@ -84,7 +84,7 @@ public class GoalListServiceTest {
 
     @Test
     public void testFindByUserMethod() {
-        List<GoalList> goalList = goalListService.findByUser(1l);
+        List<GoalList> goalList = goalListService.findByUser(1L);
         assertNotNull(goalList);
     }
 }
